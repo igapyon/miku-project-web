@@ -13,16 +13,23 @@ import {
   workbookImportSampleJson
 } from "./helpers/main-xlsx-import-harness.js";
 
+function currentSaveStateTimestamp() {
+  const date = new Date();
+  const pad = (value) => String(value).padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`;
+}
+
 describe("miku-project main xlsx import", () => {
   beforeEach(() => {
     setupMainXlsxImportDom();
   });
 
   it("imports xlsx edits back into the current model and xml", async () => {
+    const timestamp = currentSaveStateTimestamp();
     bootPage();
     parseXmlViaHook();
     document.getElementById("downloadXmlBtn").click();
-    expect(document.getElementById("xmlSaveState").textContent).toContain("XML 保存状態: 保存済み (2026-03-16 23:12)");
+    expect(document.getElementById("xmlSaveState").textContent).toContain(`XML 保存状態: 保存済み (${timestamp})`);
 
     const codec = new globalThis.__mikuprojectExcelIo.XlsxWorkbookCodec();
     const workbook = globalThis.__mikuprojectProjectXlsx.exportProjectWorkbook(
