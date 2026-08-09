@@ -1,0 +1,7 @@
+{
+  "schema_version": "miku-project.browser-runtime-lock/v1",
+  "release_tag": "v0.13.0",
+  "package_version": "0.13.0",
+  "asset_name": "miku-project-runtime-0.13.0.mjs",
+  "sha256": "b4f19e38ad53284d001180df1ded15fb794fa1fb56d0e7722b144ebec8b5a65d"
+}

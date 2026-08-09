@@ -1,0 +1,25 @@
+{
+  "name": "miku-project-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Single-file browser application for miku-project.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "runtime:fetch": "node scripts/fetch-runtime.mjs",
+    "build:js": "node scripts/build-web.mjs --js-only",
+    "build:html": "node scripts/build-web.mjs --html-only",
+    "build": "node scripts/fetch-runtime.mjs && node scripts/build-web.mjs",
+    "test": "node scripts/fetch-runtime.mjs && node scripts/build-web.mjs && vitest run",
+    "test:offline": "node scripts/fetch-runtime.mjs && node scripts/build-web.mjs && node scripts/smoke-offline.mjs",
+    "verify": "npm test && node scripts/smoke-offline.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0",
+    "typescript": "^5.8.2",
+    "vitest": "^3.2.4"
+  }
+}
